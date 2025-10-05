@@ -523,19 +523,22 @@
             FieldValue
         } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
+        // YOUR CONFIG IS NOW EMBEDDED DIRECTLY
         const FIREBASE_CONFIG = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyC72GZrrjG4UIR3qzDs-I2QWIgSFd4Yehs",
+            authDomain: "carpediem-f6948.firebaseapp.com",
+            projectId: "carpediem-f6948",
+            storageBucket: "carpediem-f6948.appspot.com", // Corrected storageBucket name
+            messagingSenderId: "705608113463",
+            appId: "1:705608113463:web:eb70088734b33486c70eb2"
         };
 
         const APP_ID = "carpe_diem";
         const app = initializeApp(FIREBASE_CONFIG);
         const auth = getAuth(app);
         const db = getFirestore(app);
+
+        console.log("Firebase Initialized for project:", FIREBASE_CONFIG.projectId);
 
         /* Session persistence (non-blocking) */
         (async () => {
@@ -885,7 +888,7 @@
                         const newPortfolio = { ...portfolio };
                         if (newQty > 0) newPortfolio[selectedId] = { quantity: newQty };
                         else delete newPortfolio[selectedId];
-                        tx.update(ref, {
+                        tx.update(ref,.update(ref, {
                             cash: +newCash.toFixed(2),
                             portfolio: newPortfolio,
                             history: FieldValue.arrayUnion(newHistoryRecord)
